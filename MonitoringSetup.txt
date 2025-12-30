@@ -1,0 +1,29 @@
+====================================================
+TASK 1: SYSTEM MONITORING SETUP
+====================================================
+
+Step 1: Update system packages
+sudo yum update -y   (RHEL/CentOS)
+sudo apt update -y   (Ubuntu)
+
+Step 2: Install monitoring tools
+sudo yum install -y htop nmon
+sudo apt install -y htop nmon
+
+Step 3: Run monitoring tools
+htop
+nmon
+
+Step 4: Disk usage monitoring
+df -h
+du -sh /home/*
+
+Step 5: Identify resource-intensive processes
+top
+ps aux --sort=-%mem | head
+ps aux --sort=-%cpu | head
+
+Step 6: Save monitoring output to log files
+mkdir -p /var/log/system_monitoring
+df -h > /var/log/system_monitoring/disk_usage.log
+top -b -n 1 > /var/log/system_monitoring/process_usage.log

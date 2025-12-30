@@ -1,0 +1,26 @@
+====================================================
+TASK 3: BACKUP CONFIGURATION FOR WEB SERVERS
+====================================================
+
+Step 1: Create backup directory
+sudo mkdir /backups
+sudo chmod 700 /backups
+
+Step 2: Apache backup command (Sarah)
+tar -czvf /backups/apache_backup_$(date +%F).tar.gz /etc/httpd /var/www/html
+
+Step 3: Nginx backup command (Mike)
+tar -czvf /backups/nginx_backup_$(date +%F).tar.gz /etc/nginx /usr/share/nginx/html
+
+Step 4: Verify backup integrity
+tar -tzvf /backups/apache_backup_YYYY-MM-DD.tar.gz
+tar -tzvf /backups/nginx_backup_YYYY-MM-DD.tar.gz
+
+Step 5: Create cron jobs
+sudo crontab -e
+
+Add the following lines:
+
+0 0 * * 2 tar -czvf /backups/apache_backup_$(date +\%F).tar.gz /etc/httpd /var/www/html >> /var/log/apache_backup.log 2>&1
+
+0 0 * * 2 tar -czvf /backups/nginx_backup_$(date +\%F).tar.gz /etc/nginx /usr/share/nginx/html >> /var/log/nginx_backup.log 2>&1

@@ -1,0 +1,31 @@
+====================================================
+TASK 2: USER MANAGEMENT AND ACCESS CONTROL
+====================================================
+
+Step 1: Create user accounts
+sudo useradd sarah
+sudo useradd mike
+
+Step 2: Set passwords
+sudo passwd sarah
+sudo passwd mike
+
+Step 3: Create isolated directories
+sudo mkdir -p /home/Sarah/workspace
+sudo mkdir -p /home/mike/workspace
+
+Step 4: Assign ownership
+sudo chown -R sarah:sarah /home/Sarah
+sudo chown -R mike:mike /home/mike
+
+Step 5: Set permissions
+sudo chmod 700 /home/Sarah/workspace
+sudo chmod 700 /home/mike/workspace
+
+Step 6: Enforce password expiration (30 days)
+sudo chage -M 30 sarah
+sudo chage -M 30 mike
+
+Step 7: Verify password policy
+chage -l sarah
+chage -l mike
